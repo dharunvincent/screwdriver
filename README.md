@@ -102,13 +102,13 @@ Claude Code loads personal skills from `~/.claude/skills/`.
 **Option 1: clone straight into your skills folder**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/screwdriver.git ~/.claude/skills/screwdriver
+git clone https://github.com/dharunvincent/screwdriver.git ~/.claude/skills/screwdriver
 ```
 
 **Option 2: keep the repo elsewhere and link it** (best if you want to edit it)
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/screwdriver.git ~/Projects/screwdriver
+git clone https://github.com/dharunvincent/screwdriver.git ~/Projects/screwdriver
 ln -s ~/Projects/screwdriver ~/.claude/skills/screwdriver
 ```
 
