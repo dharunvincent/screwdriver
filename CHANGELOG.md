@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0 (2026-10-25)
+
+* New always on section, Spend tokens wisely: read only what is needed, plan big changes with the user first, stop and discuss after two failed attempts, smallest change that fully meets the goal
+* Quality is never traded for tokens: tests, proof, comments and the self check stay
+
 ## 1.1.0 (2026-10-25)
 
 * New rule 12, Prove it works: run the code and show real results before saying done; reproduce bugs before fixing them
