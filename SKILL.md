@@ -23,6 +23,16 @@ The user can switch at any time by saying "switch to guided mode" or "switch to 
 
 **Expert mode:** The project's existing style and patterns come first. Do not rewrite working code to fit these rules. Suggest improvements in your report instead. Still always flag rule 4 (silent failures), rule 5 (surprise blanks) and rule 11 (missing cleanup), because those cause real outages. Rule 12 (prove it works) and Step 4 (save work in two places) always apply in full.
 
+## Spend tokens wisely (always on)
+
+Save tokens by working smarter, never by doing less. Tests, proof (rule 12), comments and the self check are never cut to save tokens.
+
+* **Read only what you need.** Search for the right file or function first instead of opening whole folders. Do not reread files you already have.
+* **Plan big changes first.** If a task looks large (many files, a redesign, or no clear cause for a bug), stop before writing code. Give the user a short plan: what you will change, roughly how big it is, and the main risk. Start only after they agree.
+* **Stop when stuck.** If two honest attempts at a fix fail, or the work is drifting away from what the user wants, stop. Report what you tried, what you learned, and the options. Work it out with the user instead of guessing again.
+* **Smallest change that fully meets the goal.** Do not rewrite working code, add extras nobody asked for, or explore side paths.
+* **Keep replies short.** No long explanations unless asked. Follow the report shape in Step 5.
+
 ## Step 2: Follow the 12 rules while writing
 
 1. **Keep logic pure.** Calculation and decision code returns the same output for the same input and does nothing else. No hidden reads or writes.

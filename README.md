@@ -79,6 +79,10 @@ The total can't go negative, payment failures are never hidden, and the receipt 
 
 Worked examples for every rule live in [references/rules-explained.md](references/rules-explained.md).
 
+## Saves tokens without cutting quality
+
+Claude reads only what it needs, plans big changes with you before starting, and stops to talk with you after two failed attempts instead of burning tokens on guesses. Tests, proof and comments are never cut to save tokens.
+
 ## Your work is saved in two places
 
 After every finished, checked piece of work, Claude commits it on your computer and pushes it to GitHub. If GitHub is down or the internet drops, nothing is lost: the work stays safe on your computer, Claude keeps going, and it uploads everything the next time GitHub is reachable. Claude never commits passwords or keys, and never force pushes or deletes history without asking.
