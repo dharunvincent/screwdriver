@@ -60,7 +60,7 @@ async function checkout(userId) {
 
 The total can't go negative, payment failures are never hidden, and the receipt only goes out after a successful charge.
 
-## The 11 rules
+## The 12 rules
 
 | # | Rule | In plain English |
 |---|------|------------------|
@@ -75,8 +75,13 @@ The total can't go negative, payment failures are never hidden, and the receipt 
 | 9 | Rules before code | Write down what must always be true |
 | 10 | Test the rules | Property tests with many generated inputs |
 | 11 | Always clean up | Everything opened gets closed, even on failure |
+| 12 | Prove it works | Run it and show the real result before saying done |
 
 Worked examples for every rule live in [references/rules-explained.md](references/rules-explained.md).
+
+## Your work is saved in two places
+
+After every finished, checked piece of work, Claude commits it on your computer and pushes it to GitHub. If GitHub is down or the internet drops, nothing is lost: the work stays safe on your computer, Claude keeps going, and it uploads everything the next time GitHub is reachable. Claude never commits passwords or keys, and never force pushes or deletes history without asking.
 
 ## Two modes
 
@@ -90,7 +95,7 @@ Claude asks once per project and saves your choice in `CLAUDE.md`. You can switc
 A short report of less than 4 lines, unless something needs your decision:
 
 ```
-Done: Added checkout with discount support.
+Done: Added checkout with discount support. Tests pass. Saved locally and on GitHub.
 Why: Users asked for coupon codes.
 Could fail: Payment declined; the user sees a clear message and no receipt is sent.
 ```
@@ -119,6 +124,8 @@ To update later: `git pull` inside the folder.
 ## Credits
 
 The ideas behind Screw Driver come from **[Functional Programming in Scala](https://www.manning.com/books/functional-programming-in-scala)** by **Paul Chiusano and Rúnar Bjarnason** (Manning). Everything here is explained in my own words and applied to every language. If you want the deep version, read the book.
+
+The "Prove it works" rule is inspired by [pstack](https://github.com/michael-denyer/pstack-claude) (MIT licensed), a port of Lauren Tan's pstack.
 
 This project is not affiliated with or endorsed by the authors, Manning, the Scala project, or Anthropic.
 

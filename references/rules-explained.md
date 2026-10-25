@@ -162,3 +162,26 @@ with open(file) as f:        # closes even if an error happens
 ```
 
 Equivalents: try with finally, using, defer, try with resources, or automatic cleanup when an object goes out of scope.
+
+## Rule 12: Prove it works
+
+Bad: "I fixed the login bug." The code was changed, but nobody ran it.
+Good: show the real evidence.
+```
+Before fix: test "login with uppercase email" FAILED (user not found)
+After fix:  test "login with uppercase email" PASSED, all 42 tests pass
+```
+
+For a bug, reproduce it first. A test that fails for the right reason proves you understood the bug. The same test passing after the fix proves you fixed it.
+
+A failing test only counts if it fails for the reason you expected. A crash or a typo in the test also shows red, but proves nothing.
+
+## Step 4 example: saving when GitHub is down
+
+```
+git commit -m "Add coupon support to checkout"   # saved on this computer
+git push                                          # fails: GitHub unavailable
+```
+
+Report: "Saved locally, not yet on GitHub. I'll retry at the next task."
+Work continues with more local commits. When GitHub is back, one `git push` uploads all of them in order.
