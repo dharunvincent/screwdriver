@@ -21,9 +21,9 @@ The user can switch at any time by saying "switch to guided mode" or "switch to 
 
 **Guided mode:** Apply every rule below fully. Explain your work in plain English for a reader who does not code.
 
-**Expert mode:** The project's existing style and patterns come first. Do not rewrite working code to fit these rules. Suggest improvements in your report instead. Still always flag rule 4 (silent failures), rule 5 (surprise blanks) and rule 11 (missing cleanup), because those cause real outages.
+**Expert mode:** The project's existing style and patterns come first. Do not rewrite working code to fit these rules. Suggest improvements in your report instead. Still always flag rule 4 (silent failures), rule 5 (surprise blanks) and rule 11 (missing cleanup), because those cause real outages. Rule 12 (prove it works) and Step 4 (save work in two places) always apply in full.
 
-## Step 2: Follow the 11 rules while writing
+## Step 2: Follow the 12 rules while writing
 
 1. **Keep logic pure.** Calculation and decision code returns the same output for the same input and does nothing else. No hidden reads or writes.
 2. **Pure core, thin shell.** Anything that touches the outside world (database, network, files, user input, logging, current time, random numbers, environment settings) lives in a thin outer layer. The core receives plain data and returns plain data.
@@ -36,6 +36,7 @@ The user can switch at any time by saying "switch to guided mode" or "switch to 
 9. **Write the rules before the code.** For any important logic (money, permissions, data changes, business rules), first write in a comment what must always be true, for example "total is never negative" or "cancelling twice equals cancelling once".
 10. **Test the rules, not just examples.** Turn the rules from step 9 into property tests that run many generated inputs, plus a few normal example tests. In guided mode, add the standard property testing library for the language automatically and mention it in the report. In expert mode, ask before adding a new library.
 11. **Always clean up.** Every file, connection, lock or subscription that is opened is closed on every path, including failures. Use the language's built in safe pattern for this.
+12. **Prove it works.** Never say "done" because the code looks right or compiles. Run it and check the real result: run the tests, run the feature, read the actual output. For a bug, first reproduce it, ideally with a test that fails for the right reason, then fix it and show the same check now passes. If something truly cannot be run here, say so plainly in the report and name the exact check the user should do.
 
 Always on, in both modes:
 * Clear comments that explain why, not what, for future readers.
@@ -57,16 +58,31 @@ Check only the code you added or changed in this task. Do not reread the whole p
 7. Does each function do one job? (rule 8)
 8. Are important rules written down and tested? (rules 9, 10)
 9. Is everything opened also closed, even on failure? (rule 11)
-10. Are there clear comments, and is the README section still accurate?
+10. Did I run it and see the real result, not just assume it works? (rule 12)
+11. Are there clear comments, and is the README section still accurate?
 
 Fix anything that fails before reporting. Mention only what you could not fix.
 
-## Step 4: Report
+## Step 4: Save work in two places
+
+Only save work that passed Step 3. Git keeps a full copy on this computer, and GitHub keeps a second copy in the cloud, so losing either one never loses the work.
+
+1. **Save locally.** Commit the finished, checked work with a clear message saying what changed and why. Commit small and often, once per finished piece, so nothing is ever only in unsaved files.
+2. **Save to GitHub.** Push the commit to the project's GitHub remote.
+3. **If the push fails** (GitHub down, no internet, login expired): do not stop and do not retry in a loop. The work is already safe locally. Keep working and committing locally. Say "saved locally, not yet on GitHub" in the report, and try the push again at the start of the next task. Once GitHub is back, one push uploads every waiting commit.
+4. **If there is no GitHub remote yet:** in guided mode, ask once whether to set one up. In expert mode, follow the project's existing habits and ask before pushing anywhere new.
+
+Safety rules, always:
+* Never commit secrets (passwords, API keys, `.env` files). Make sure `.gitignore` covers them before the first commit.
+* Never force push, rewrite history, or delete branches without asking first.
+* If the push is rejected because GitHub has newer changes, do not overwrite them. Pull and combine first, and ask the user if the changes clash.
+
+## Step 5: Report
 
 Keep your phase reports to less than 4 lines unless something needs my decision.
 
 Use this shape, in plain English:
-**Done:** what changed.
+**Done:** what changed, how you proved it works, and where it is saved (local and GitHub, or local only).
 **Why:** the reason, in one line.
 **Could fail:** what might go wrong and how the code handles it.
 **Needs you:** a decision, only if there is one.
@@ -74,7 +90,7 @@ Use this shape, in plain English:
 ## When to relax
 
 * The user's direct instruction always wins over these rules.
-* For a throwaway script or a quick experiment the user labels as such, apply rules 4, 5 and 11 only.
+* For a throwaway script or a quick experiment the user labels as such, apply rules 4, 5, 11 and 12 only, and skip Step 4 unless the user asks to save it.
 
 ## Full review on request
 
